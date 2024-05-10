@@ -240,7 +240,7 @@ const HomePage = () => {
                     <div className="grid grid-cols-1 gap-4">
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="55" height="55" src="/images/ReportesLogo.png" />
+                          <img className="mb-1" width="55" height="55" src="/schoolarSecurity/images/ReportesLogo.png" />
                         </div>
                         <div className="w-4/5 px-2">
                           <span>
@@ -250,7 +250,7 @@ const HomePage = () => {
                       </div>
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="55" height="55" src="/images/sos.png"/>
+                          <img className="mb-1" width="55" height="55" src="/schoolarSecurity/images/sos.png"/>
                         </div>
                         <div className="w-4/5 px-2">
                           <span>
@@ -260,7 +260,7 @@ const HomePage = () => {
                       </div>
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="55" height="55" src="/images/logo_noticias.png" />
+                          <img className="mb-1" width="55" height="55" src="/schoolarSecurity/images/logo_noticias.png" />
                         </div>
                         <div className="w-4/5 px-2">
                           <span>
@@ -270,7 +270,7 @@ const HomePage = () => {
                       </div>
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="55" height="55" src="/images/logo_grupos.png" />
+                          <img className="mb-1" width="55" height="55" src="/schoolarSecurity/images/logo_grupos.png" />
                         </div>
                         <div className="w-4/5 px-2">
                           <span>
@@ -287,7 +287,7 @@ const HomePage = () => {
                     <div className="grid grid-cols-1 gap-4">
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="60" height="60" src="/images/comunidad.png " />
+                          <img className="mb-1" width="60" height="60" src="/schoolarSecurity/images/comunidad.png " />
                         </div>
                         <div className="w-4/5 px-2">
                           <span>
@@ -297,7 +297,7 @@ const HomePage = () => {
                       </div>
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="55" height="55" src="/images/estadisticas.png" />
+                          <img className="mb-1" width="55" height="55" src="/schoolarSecurity/images/estadisticas.png" />
                         </div>
                         <div className="w-4/5 px-2">
                           <span>
@@ -307,7 +307,7 @@ const HomePage = () => {
                       </div>
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="60" height="60" src="/images/smsimpacto.png" />
+                          <img className="mb-1" width="60" height="60" src="/schoolarSecurity/images/smsimpacto.png" />
                         </div>
                         <div className="w-4/5 px-2">
                           <span>
@@ -317,7 +317,7 @@ const HomePage = () => {
                       </div>
                       <div className="flex flex-row">
                         <div className="w-1/5 flex justify-center">
-                          <img className="mb-1" width="60" height="60" src="/images/alarma.png" />
+                          <img className="mb-1" width="60" height="60" src="/schoolarSecurity/images/alarma.png" />
                         </div>
                         <div className="w-4/5 px-2">
                           <span>

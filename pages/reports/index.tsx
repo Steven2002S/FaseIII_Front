@@ -815,40 +815,29 @@ const ReportsPage = () => {
             text: "Cantidad de Emergencias",
             align: "center",
           },
-          tooltip: {
-            theme: "dark",
-            x: {
-              show: false,
-            },
-            y: {
-              title: {
-                formatter: function () {
-                  return "Cantidad";
+            tooltip: {
+              // Configuración del tooltip sin animación y sin mostrar nada
+              y: {
+                title: {
+                  formatter: function () {
+                    return ""; // No muestra el titulo
+                  },
+                },
+                formatter: function (value) {
+                  return ""; // No mostra la animacion del tooltip
                 },
               },
-              formatter: function (
-                value,
-                { series, seriesIndex, dataPointIndex, w }
-              ) {
-                // Obtener los datos originales de emergenciasCount
-                const emergenciasCount =
-                  w.globals.series[seriesIndex][dataPointIndex];
-                return emergenciasCount;
+              marker: {
+                show: false,
               },
+              fixed: {
+                enabled: false, 
+              },
+              followCursor: false, 
+              enabled: false, // Desactiva completamente el tooltip
             },
-            marker: {
-              show: true,
-            },
-            fixed: {
-              enabled: true,
-              position: "topRight",
-              offsetX: 0,
-              offsetY: 50,
-            },
-            followCursor: true,
-          },
-        });
-
+          });
+                    
         // Redondear los porcentajes
         const porcentajesRedondeados = porcentajes.map((porcentaje) =>
           parseFloat(porcentaje.toFixed(2))
@@ -1176,53 +1165,64 @@ const ReportsPage = () => {
         console.error(error);
       });
   };
+  /* Fase 3 */
+const obtenerDatosCardsF3 = async () => {
+  try {
+    const { unidadEducativa } = dataUser;
+    const fechaActual = new Date();
 
-  /*
-  
-  Fase 3 
-  
-  
-  */
+    // Calcular el primer día del mes actual
+    const primerDiaMesActual = new Date(fechaActual.getFullYear(), fechaActual.getMonth(), 1);
 
-  /*    OBTENER CARDS  */
+    // Calcular el último día del mes actual
+    const ultimoDiaMesActual = new Date(fechaActual.getFullYear(), fechaActual.getMonth() + 1, 0);
 
-  const obtenerDatosCardsF3 = () => {
-    console.log("Datos enviados para card:", dataUser.unidadEducativa);
-    let unidadEducativa = dataUser.unidadEducativa;
-    axios
-      .post("http://10.3.1.203:3000/api/v2/reportes/obtenerDatosCardsF3", {
-        unidadEducativa,
-      })
-      .then((response) => {
-        setPublicacionesRegistradas(
-          response.data.data.publicacionesRegistradas
-        );
-        setUsuariosRegistros(response.data.data.usuariosRegistros);
-        setPublicacionesDelMes(response.data.data.publicacionesDelMes);
-        setPublicacionesDelDia(response.data.data.publicacionesDelDia);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+    // Calcular la fecha de inicio del día actual
+    const fechaInicioDiaActual = new Date();
+    fechaInicioDiaActual.setHours(0, 0, 0, 0);
 
-  /* FIN FASE 3*/
+    // Calcular la fecha de fin del día actual
+    const fechaFinDiaActual = new Date();
+    fechaFinDiaActual.setHours(23, 59, 59, 999);
 
-  const obtenerDatosCards = () => {
-    axios
-      .get("http://10.3.1.203:3000/api/v2/reportes/obtenerDatosCards")
-      .then((response) => {
-        setPublicacionesRegistradas(
-          response.data.data.publicacionesRegistradas
-        );
-        setUsuariosRegistros(response.data.data.usuariosRegistros);
-        setPublicacionesDelMes(response.data.data.publicacionesDelMes);
-        setPublicacionesDelDia(response.data.data.publicacionesDelDia);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+    const response = await axios.post("http://10.3.1.203:3000/api/v2/reportes/obtenerDatosCardsF3", {
+      unidadEducativa,
+      primerDiaMesActual,
+      ultimoDiaMesActual,
+      fechaInicioDiaActual,
+      fechaFinDiaActual
+    });
+
+    const { publicacionesRegistradas, usuariosRegistros, publicacionesDelMes, publicacionesDelDia } = response.data.data;
+    setPublicacionesRegistradas(publicacionesRegistradas);
+    setUsuariosRegistros(usuariosRegistros);
+    setPublicacionesDelMes(publicacionesDelMes);
+    setPublicacionesDelDia(publicacionesDelDia);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+obtenerDatosCardsF3(); // Llamar a la función inmediatamente después de definirla
+
+const obtenerDatosCards = async () => {
+  try {
+    const response = await axios.get("http://10.3.1.203:3000/api/v2/reportes/obtenerDatosCards");
+
+    const { publicacionesRegistradas, usuariosRegistros, publicacionesDelMes, publicacionesDelDia } = response.data.data;
+    setPublicacionesRegistradas(publicacionesRegistradas);
+    setUsuariosRegistros(usuariosRegistros);
+    setPublicacionesDelMes(publicacionesDelMes);
+    setPublicacionesDelDia(publicacionesDelDia);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// Llamar a la función al cargar la página
+useEffect(() => {
+  obtenerDatosCardsF3();
+}, []); // Esto asegura que se llame solo una vez al cargar la página
 
   const obtenerCoordenadas = (
     ciudad: any,
